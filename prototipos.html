@@ -28,7 +28,7 @@ html{color-scheme:light}body{margin:0;height:100vh;display:flex;flex-direction:c
 var HINT={web:'Plataforma web · Desktop y Mobile · pantallas reales + Clases en vivo',app:'App descargable · Teléfono e iPad · entregable Figma'};
 var loaded={},cur=null;
 function b64(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
-async function inflate(p){var r=await fetch(p==='web'?'pw.bin':'pa.bin');var ds=new DecompressionStream('deflate-raw');return await new Response(r.body.pipeThrough(ds)).text()}
+async function inflate(p){var r=await fetch(p==='web'?'pw.bin':'pa.bin',{cache:'no-cache'});var ds=new DecompressionStream('deflate-raw');return await new Response(r.body.pipeThrough(ds)).text()}
 async function show(p){if(p!=='web'&&p!=='app')p='web';cur=p;
   document.getElementById('bw').className=p==='web'?'on':'';document.getElementById('ba').className=p==='app'?'on':'';
   document.getElementById('hint').textContent=HINT[p];
