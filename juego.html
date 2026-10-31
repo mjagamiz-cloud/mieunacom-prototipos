@@ -336,11 +336,11 @@ const CELLS = [
  {k:'neu', dif:'Fácil', ab:{name:'Desgranulación',ds:'Onda que empuja y daña a todo alrededor.',cd:12}, name:'Neutrófilo', ds:'La primera línea de defensa. Equilibrado.', col:'#F4F7FB', nuc:'#5B6FD6', gran:'#E8B4C8', hp:100, spd:1, start:'ab', trait:'Equilibrado: vida 100, velocidad normal.', atk:'Disparo: pulsos al enemigo más cercano.', lock:false, unlock:'Disponible desde el inicio', short:''},
  {k:'bcell', dif:'Fácil', ab:{name:'Plasmocito',ds:'6 s disparando en todas direcciones.',cd:16}, name:'Linfocito B', ds:'El estudioso: fabrica anticuerpos.', col:'#E8F4FF', nuc:'#2E7DD6', gran:'#A9D4FF', hp:90, spd:1, start:'homing', trait:'Parte con su ataque en nivel 2.', atk:'Anticuerpos teledirigidos: persiguen al enemigo.', lock:true, unlock:'Responde 30 preguntas correctas en total', short:'30 aciertos'},
  {k:'tcell', dif:'Fácil', ab:{name:'Expansión clonal',ds:'Un clon te acompaña y ataca 8 s.',cd:18}, name:'Linfocito T', ds:'Pequeño y letal.', col:'#DDD6FF', nuc:'#5A46C9', gran:'#B9AEFF', hp:80, spd:1, start:'beam', trait:'+40 % de daño.', atk:'Perforina: rayo continuo al enemigo más fuerte.', lock:true, unlock:'Responde 60 preguntas correctas en total', short:'60 aciertos'},
- {k:'nk', dif:'Fácil', ab:{name:'Granzima',ds:'12 cuchillas que atraviesan todo y golpe letal al más fuerte (al jefe, un tercio).',cd:13}, name:'Célula NK', ds:'La asesina natural.', col:'#CFEFF7', nuc:'#126A80', gran:'#1A8DA8', hp:90, spd:1.05, start:'fan', trait:'Cada 5.ª ráfaga es crítica ×3.', atk:'Abanico de cuchillas: ráfagas que atraviesan.', lock:true, unlock:'Responde 90 preguntas correctas en total', short:'90 aciertos'},
+ {k:'nk', dif:'Fácil', ab:{name:'Granzima',ds:'12 cuchillas que atraviesan todo y un golpe letal al más fuerte.',cd:13}, name:'Célula NK', ds:'La asesina natural.', col:'#CFEFF7', nuc:'#126A80', gran:'#1A8DA8', hp:90, spd:1.05, start:'fan', trait:'Cada 5.ª ráfaga es crítica ×3.', atk:'Abanico de cuchillas: ráfagas que atraviesan.', lock:true, unlock:'Responde 90 preguntas correctas en total', short:'90 aciertos'},
  {k:'dend', dif:'Media', ab:{name:'Presentación de antígeno',ds:'Marca al jefe: triple daño 6 s.',cd:18}, name:'Dendrítica', ds:'La que avisa a todo el sistema.', col:'#FFF4D6', nuc:'#B8860B', gran:'#F5B400', hp:85, spd:1.05, start:'chain', trait:'4 cartas de mejora en vez de 3.', atk:'Citoquinas en cadena: un arco que salta entre enemigos.', lock:true, unlock:'Responde 120 preguntas correctas en total', short:'120 aciertos'},
- {k:'mast', dif:'Media', ab:{name:'Onda de choque',ds:'Explosión que empuja todo fuera de la pantalla.',cd:20}, name:'Mastocito', ds:'El fiestero.', col:'#FFE0F0', nuc:'#C2185B', gran:'#FF5FA0', hp:100, spd:1, start:'bomb', trait:'20 % de doble ATP por cada baja.', atk:'Gránulo explosivo: bombas que explotan al caer.', lock:true, unlock:'Responde 150 preguntas correctas en total', short:'150 aciertos'},
+ {k:'mast', dif:'Media', ab:{name:'Onda de choque',ds:'Explosión que empuja todo fuera de pantalla.',cd:20}, name:'Mastocito', ds:'El fiestero.', col:'#FFE0F0', nuc:'#C2185B', gran:'#FF5FA0', hp:100, spd:1, start:'bomb', trait:'20 % de doble ATP por cada baja.', atk:'Gránulo explosivo: bombas que explotan al caer.', lock:true, unlock:'Responde 150 preguntas correctas en total', short:'150 aciertos'},
  {k:'eos', dif:'Difícil', ab:{name:'Nube de gránulos',ds:'Nube que daña a quien la cruce 4 s.',cd:12}, name:'Eosinófilo', ds:'Rápido y frágil.', col:'#FBD9E2', nuc:'#B23A6D', gran:'#F0863A', hp:75, spd:1.2, start:'trail', trait:'Rápido (+20 %) y frágil (75 de vida).', atk:'Estela tóxica: aura y estela al moverte.', lock:true, unlock:'Responde 180 preguntas correctas en total', short:'180 aciertos'},
- {k:'mac', dif:'Difícil', ab:{name:'Bocado gigante',ds:'Te tragas a todos los cercanos y recuperas vida por cada uno.',cd:14}, name:'Macrófago', ds:'Grande, lento y blindado.', col:'#E9DDB8', nuc:'#8C6A2E', gran:'#C9A961', hp:140, spd:.85, start:'suck', trait:'Membrana gruesa: recibe 25 % menos daño.', atk:'Fagocitosis: atrae y se traga a los enemigos; al jefe le da mordiscos.', lock:true, unlock:'Responde 210 preguntas correctas en total', short:'210 aciertos'},
+ {k:'mac', dif:'Difícil', ab:{name:'Bocado gigante',ds:'Te tragas a los cercanos y recuperas vida por cada uno.',cd:14}, name:'Macrófago', ds:'Grande, lento y blindado.', col:'#E9DDB8', nuc:'#8C6A2E', gran:'#C9A961', hp:140, spd:.85, start:'suck', trait:'Membrana gruesa: recibe 25 % menos daño.', atk:'Fagocitosis: atrae y se traga a los enemigos; al jefe le da mordiscos.', lock:true, unlock:'Responde 210 preguntas correctas en total', short:'210 aciertos'},
 ];
 /* dibujo de cada célula (menú y partida comparten el mismo dibujo) */
 const CELL_LOOK={
@@ -420,23 +420,23 @@ function drawCell(x, cx, cy, r, c, t, face, noHalo){
 }
 const POWERS = {
  ab:   {name:'Disparo', ds:n=>`Disparas ${n} pulso${n>1?'s':''} al enemigo más cercano.`, max:6, col:'#9BE9F2'},
- comp: {name:'Complemento', ds:n=>`${n} esfera${n>1?'s':''} de complemento giran a tu alrededor.`, max:7, col:'#9BE9F2'},
+ comp: {name:'Complemento', ds:n=>`${n} esfera${n>1?'s':''} de complemento gira${n>1?'n':''} a tu alrededor.`, max:7, col:'#9BE9F2'},
  burst:{name:'Estallido respiratorio', ds:n=>`Cada ${(2.4-n*.2).toFixed(1)} s, una onda de radicales libres.`, max:7, col:'#FF9B6A'},
  opso: {name:'Opsonización', ds:n=>`Atraes el ATP desde más lejos (+${n*25}).`, max:5, col:'#FF7A9E'},
- nets: {name:'NETs', ds:n=>`Cada segundo dejas una red de ADN que atrapa y daña (radio ${16+n*5}).`, max:6, col:'#C86BD8', base:true},
+ nets: {name:'NETs', ds:n=>`Redes de ADN que atrapan y dañan (radio ${16+n*5}).`, max:6, col:'#C86BD8', base:true},
  memb: {name:'Membrana', ds:n=>`+${n*15} de vida máxima y regeneración lenta.`, max:6, col:'#8AD46A'},
- suck: {name:'Fagocitosis', ds:n=>`Atraes a los enemigos (radio ${95+n*10}) y cada ${(.75-n*.04).toFixed(2)} s das una tragada que engulle hasta ${2+Math.floor(n/2)} de los que te tocan (${14+n*4} de daño; al jefe y a los élites les das mordiscos).`, max:8, col:'#C9A961', base:true},
- trail:{name:'Estela tóxica', ds:n=>`Aura tóxica (radio ${62+n*6}, ${(2.0+n*.5).toFixed(1)} de daño/s) y estela al moverte (ancho ${22+n*4}, ${(1.2+n*.35).toFixed(1)} de daño/s).`, max:8, col:'#F0863A', base:true},
- beam: {name:'Perforina', ds:n=>`Un rayo continuo al enemigo más fuerte cerca (${(8+n*1.5).toFixed(1)} de daño/s${n>=4?', 2 rayos':''}${n>=7?', 3 rayos':''}).`, max:8, col:'#B9AEFF', base:true},
- fan:  {name:'Abanico de cuchillas', ds:n=>`Ráfaga de ${3+Math.floor(n/3)} cuchillas en abanico que atraviesan un enemigo (cada ${(1.0-n*.06).toFixed(2)} s).`, max:8, col:'#CFEFF7', base:true},
- homing:{name:'Anticuerpos teledirigidos', ds:n=>`Lanzas ${1+Math.floor(n/3)} anticuerpo${n>=3?'s':''} que persiguen al enemigo (${7+n} de daño + salpicadura, cada ${(.85-n*.06).toFixed(2)} s).`, max:8, col:'#A9D4FF', base:true},
- pulse:{name:'Pulso de histamina', ds:n=>`Cada ${(2.2-n*.12).toFixed(1)} s, una onda de radio ${70+n*8} que daña (${5+n}) y deja lentos 1,5 s.`, max:8, col:'#B9A6FF', base:true},
- trap: {name:'Coágulos', ds:n=>`Lanzas un coágulo pegajoso sobre el enemigo más cercano (radio ${26+n*3}): lo atrapa, lo frena y lo daña ${(3.5+n).toFixed(1)}/s, cada ${(1.7-n*.1).toFixed(2)} s.`, max:8, col:'#FFB380', base:true},
- bomb: {name:'Gránulo explosivo', ds:n=>`Lanzas un gránulo que explota al caer (radio ${50+n*5}, ${8+n*2} de daño) cada ${(2.6-n*.14).toFixed(2)} s.`, max:8, col:'#FF5FA0', base:true},
- chain:{name:'Citoquinas en cadena', ds:n=>`Un arco que salta entre ${3+Math.floor(n/2)} enemigos (${6+n} de daño cada uno) cada ${(1.1-n*.06).toFixed(2)} s.`, max:8, col:'#F5B400', base:true},
+ suck: {name:'Fagocitosis', ds:n=>`Atraes y engulles hasta ${2+Math.floor(n/2)} enemigos a la vez (${14+n*4} de daño).`, max:8, col:'#C9A961', base:true},
+ trail:{name:'Estela tóxica', ds:n=>`Aura tóxica y estela que dañan al moverte (${(2.0+n*.5).toFixed(1)}/s).`, max:8, col:'#F0863A', base:true},
+ beam: {name:'Perforina', ds:n=>`${n>=7?'3 rayos':n>=4?'2 rayos':'Rayo'} al enemigo más fuerte (${(8+n*1.5).toFixed(1)} de daño/s).`, max:8, col:'#B9AEFF', base:true},
+ fan:  {name:'Abanico de cuchillas', ds:n=>`Ráfaga de ${3+Math.floor(n/3)} cuchillas que atraviesan, cada ${(1.0-n*.06).toFixed(1)} s.`, max:8, col:'#CFEFF7', base:true},
+ homing:{name:'Anticuerpos teledirigidos', ds:n=>`${1+Math.floor(n/3)} anticuerpo${n>=3?'s':''} que persigue${n>=3?'n':''} al enemigo (${7+n} de daño).`, max:8, col:'#A9D4FF', base:true},
+ pulse:{name:'Pulso de histamina', ds:n=>`Cada ${(2.2-n*.12).toFixed(1)} s, una onda que daña (${5+n}) y frena a los enemigos.`, max:8, col:'#B9A6FF', base:true},
+ trap: {name:'Coágulos', ds:n=>`Coágulo que atrapa y frena al más cercano (${(3.5+n).toFixed(1)} de daño/s).`, max:8, col:'#FFB380', base:true},
+ bomb: {name:'Gránulo explosivo', ds:n=>`Gránulo que explota al caer (${8+n*2} de daño, radio ${50+n*5}).`, max:8, col:'#FF5FA0', base:true},
+ chain:{name:'Citoquinas en cadena', ds:n=>`Arco que salta entre ${3+Math.floor(n/2)} enemigos (${6+n} de daño a cada uno).`, max:8, col:'#F5B400', base:true},
 };
 const ACT2={k:'adren',name:'Adrenalina',ds:'Velocidad ×1.7 e invulnerable 3 s.',cd:18};
-const EVOS=[{need:{ab:5,opso:3}, k:'opsofag', name:'Opsonofagocitosis', ds:'Pulsos dorados que atraviesan hasta 4 enemigos y hacen más daño.', col:'#F5B400'}];
+const EVOS=[{need:{ab:5,opso:3}, k:'opsofag', name:'Opsonofagocitosis', ds:'Pulsos dorados que atraviesan 4 enemigos con más daño.', col:'#F5B400'}];
 
 
 /* ---------- sonido (WebAudio sintetizado, sin archivos) ---------- */
@@ -912,7 +912,14 @@ function levelUp(){ sfx('level'); gtoast('¡Nivel '+S.lv+'!','una pregunta de '+
 function inWorld(q,w){ if(w.k==='INF') return true; if(w.k==='DAILY') return inWorld(q,weekWorld()); return q.cat===(w.cat||w.k)&&(!w.sub||w.sub.includes(q.area))&&(!w.ex||!w.ex.includes(q.area)); }
 function nextQuestion(){ let pool=Q.filter(q=>!used.has(q.id)&&inWorld(q,world)); if(!pool.length){ /* banco de ejemplo pequeño: si se acaba, se vuelve a barajar el mundo */ Q.filter(q=>inWorld(q,world)).forEach(q=>used.delete(q.id)); pool=Q.filter(q=>inWorld(q,world)); } if(!pool.length) return null; const q=pool[Math.floor(R()*pool.length)]; used.add(q.id); return q; }
 /* Reto semanal: célula y mundo rotan cada semana (misma combinación para todos) */
-function weekPick(){ let h=Math.imul(weekSeed(),2654435761)>>>0; h^=h>>>15; h=Math.imul(h,2246822519)>>>0; h^=h>>>13; h=Math.imul(h,3266489917)>>>0; h^=h>>>16; const r=srand(h); r(); r(); r(); return {cell:CELLS[Math.floor(r()*CELLS.length)], world:[...WORLDS,INF][Math.floor(r()*(WORLDS.length+1))]}; } /* al azar, misma combinación para todos, cambia el lunes 00:00 */
+/* Reto semanal: misma combinación para todos, cambia el lunes 00:00. Mundo al azar (cualquiera, incluido Todas las áreas). Célula al azar PONDERADA por dificultad: Fácil 3 · Media 2 · Difícil 1 (con 4/2/2 células: 67 % / 22 % / 11 %). Nunca se repite la célula de la semana anterior. */
+const RETO_W={'Fácil':3,'Media':2,'Difícil':1};
+function weekRng(seed){ let h=Math.imul(seed,2654435761)>>>0; h^=h>>>15; h=Math.imul(h,2246822519)>>>0; h^=h>>>13; h=Math.imul(h,3266489917)>>>0; h^=h>>>16; const r=srand(h); r(); r(); r(); return r; }
+function weekCellDraw(r){ const tot=CELLS.reduce((a,c)=>a+(RETO_W[c.dif]||1),0); let x=r()*tot; for(const c of CELLS){ x-=(RETO_W[c.dif]||1); if(x<0) return c; } return CELLS[CELLS.length-1]; }
+function weekPickFor(seed){ const r=weekRng(seed); const world=[...WORLDS,INF][Math.floor(r()*(WORLDS.length+1))]; const c1=weekCellDraw(r), c2=weekCellDraw(r); return {cell:c1,alt:c2,world}; }
+function weekPrevSeed(seed){ const wk=seed%100, y=Math.floor(seed/100); return wk>1?seed-1:(y-1)*100+52; }
+function weekCellFinal(seed){ /* la célula definitiva de una semana depende de la anterior (no repetir): se recorre la cadena de las 8 semanas previas */ let seeds=[seed]; for(let i=0;i<8;i++) seeds.unshift(weekPrevSeed(seeds[0])); let prev=null; for(const sd of seeds){ const p=weekPickFor(sd); let c=p.cell; if(c===prev) c=p.alt!==prev?p.alt:CELLS.find(x=>x!==prev&&x.dif==='Fácil'); prev=c; } return prev; }
+function weekPick(){ const seed=weekSeed(); return {cell:weekCellFinal(seed),world:weekPickFor(seed).world}; }
 function weekCell(){ return weekPick().cell; }
 function weekWorld(){ return weekPick().world; }
 function hud(){ const ab=$('#btnAb'); if(ab){ const a=cell.ab; ab.classList.toggle('hide',!S.actives.includes('cell')); $('#abName').textContent=a.name; $('#abIcon').textContent={neu:'💥',mac:'🫧',eos:'☁️',tcell:'✨',nk:'🗡️',bcell:'🧬',baso:'🌀',plaq:'🩹',mast:'🎉',dend:'👑'}[cell.k]||'⚡'; const f=S.abCd/a.cd; $('#abArc').style.strokeDashoffset=(182.2*f).toFixed(1); ab.classList.toggle('cd',S.abCd>0); ab.classList.toggle('ready',S.abCd<=0); const ab2=$('#btnAb2'); ab2.classList.toggle('hide',!S.actives.includes('adren')); $('#abArc2').style.strokeDashoffset=(182.2*S.abCd2/ACT2.cd).toFixed(1); ab2.classList.toggle('cd',S.abCd2>0); ab2.classList.toggle('ready',S.abCd2<=0); }
